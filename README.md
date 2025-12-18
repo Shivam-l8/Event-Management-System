@@ -1,130 +1,111 @@
 # Event Management System
 
-A full-stack application for managing events, built with React, Express, and MongoDB. Create, update, delete, and view events with a simple and intuitive user interface.
+A full-stack Event Management System built with **React (Vite)**, **Express.js**, and **MongoDB**. It supports creating, viewing, updating, and deleting events through a clean UI and a REST API.
+
+> Security note: Do **not** commit real secrets (MongoDB URIs, API keys). Use `.env` locally and keep it in `.gitignore`.
 
 ## Features
 
 - ✨ Create, read, update, and delete events
-- 📅 View event details with date, time, and location
-- 📋 List all events in an organized view
-- 🎨 Modern and intuitive UI built with React
-- 🚀 RESTful API with Express.js
+- 📅 Event details (date, time, location, organizer)
+- 📋 List and view all events in an organized layout
+- 🎨 Modern UI built with React + Vite
+- 🚀 RESTful API with Express.js + Mongoose
 
 ## Tech Stack
 
-- **Frontend**: React.js, React Router, Axios, Framer Motion, Vite
-- **Backend**: Express.js, Node.js
-- **Database**: MongoDB with Mongoose ODM
+- **Frontend**: React, React Router, Axios, Framer Motion, Vite
+- **Backend**: Node.js, Express.js
+- **Database**: MongoDB (Mongoose ODM)
 
 ## Project Structure
 
-```
-Event-Management-System-main/
-├── backend/           # Express.js API server
-│   ├── models/       # MongoDB models (Event schema)
-│   ├── routes/       # API routes
-│   └── index.js      # Server entry point
-├── frontend/         # React.js application
+Event-Management-System/
+├── backend/                 # Express API
+│   ├── models/              # Mongoose schemas
+│   ├── routes/              # API routes
+│   ├── index.js             # Server entry
+│   ├── package.json
+│   ├── .env.example         # Example env (safe)
+│   └── .gitignore
+├── frontend/                # React (Vite)
 │   ├── src/
-│   │   ├── components/   # React components
-│   │   └── services/     # API service functions
-│   └── vite.config.js
+│   │   ├── components/
+│   │   └── services/
+│   ├── vite.config.js
+│   ├── package.json
+│   ├── .env.example         # Example env (safe)
+│   └── .gitignore
 └── README.md
-```
 
 ## Prerequisites
 
-- Node.js (v16 or higher)
+- Node.js v16+
 - npm or yarn
-- MongoDB (running locally or MongoDB Atlas connection string)
+- MongoDB (local) or MongoDB Atlas
 
 ## Getting Started
 
-### 1. Clone the repository
+### 1) Clone
 
-```bash
 git clone <repository-url>
-cd Event-Management-System-main
-```
+cd Event-Management-System
 
-### 2. Backend Setup
+### 2) Backend Setup
 
-```bash
 cd backend
 npm install
 
-# Create .env file from .env.example
+# Create .env from example
 cp .env.example .env
 
-# Edit .env file with your MongoDB connection string
-# MONGODB_URI=mongodb://localhost:27017/eventmanagement
-# or
-# MONGODB_URI=mongodb+srv://username:password@cluster.mongodb.net/eventmanagement
-
-# Start the backend server
+# Start backend
 npm run dev
-```
 
-The backend server will run on `http://localhost:5000` (or the port specified in `.env`).
+Backend runs on:
+- http://localhost:5000 (default) or the PORT in .env
 
-### 3. Frontend Setup
+### 3) Frontend Setup
 
-```bash
-cd frontend
+cd ../frontend
 npm install
 
-# Create .env file from .env.example
+# Create .env from example
 cp .env.example .env
 
-# Edit .env file with your API URL
-# VITE_API_URL=http://localhost:5000/api/events
-
-# Start the frontend development server
+# Start frontend
 npm run dev
-```
 
-The frontend will be available at `http://localhost:5173` (default Vite port).
+Frontend runs on:
+- http://localhost:5173 (default Vite port)
 
 ## Environment Variables
 
-### Backend (.env)
+### Backend (backend/.env)
 
-- `MONGODB_URI` - MongoDB connection string (required)
-  - Local: `mongodb://localhost:27017/eventmanagement`
-  - Atlas: `mongodb+srv://username:password@cluster.mongodb.net/eventmanagement`
-- `PORT` - Server port (optional, defaults to 5000)
+MONGODB_URI=your_mongodb_connection_string_here
+PORT=5000
 
-### Frontend (.env)
+Examples:
+- Local: mongodb://localhost:27017/eventmanagement
+- Atlas (placeholder format): mongodb+srv://<username>:<password>@<cluster-url>/eventmanagement
 
-- `VITE_API_URL` - Backend API URL (required)
-  - Development: `http://localhost:5000/api/events`
-  - Production: `https://your-api-domain.com/api/events`
+### Frontend (frontend/.env)
 
-## Available Scripts
-
-### Backend
-- `npm start` - Start production server
-- `npm run dev` - Start development server with nodemon
-
-### Frontend
-- `npm run dev` - Start development server
-- `npm run build` - Build for production
-- `npm run preview` - Preview production build
-- `npm run lint` - Run ESLint
+VITE_API_URL=http://localhost:5000/api/events
 
 ## API Endpoints
 
-Base URL: `http://localhost:5000/api/events`
+Base URL (dev): http://localhost:5000/api/events
 
-- `GET /api/events` - Get all events (sorted by date)
-- `GET /api/events/:id` - Get a specific event by ID
-- `POST /api/events` - Create a new event
-- `PUT /api/events/:id` - Update an event
-- `DELETE /api/events/:id` - Delete an event
+- GET /api/events — Get all events (sorted by date)
+- GET /api/events/:id — Get event by ID
+- POST /api/events — Create event
+- PUT /api/events/:id — Update event
+- DELETE /api/events/:id — Delete event
 
-### Event Schema
+## Event Schema (Mongoose)
 
-```javascript
 {
   title: String (required),
   description: String (required),
@@ -134,16 +115,13 @@ Base URL: `http://localhost:5000/api/events`
   organizer: String (required),
   createdAt: Date (auto-generated)
 }
-```
 
 ## Usage
 
-1. Start both backend and frontend servers
-2. Open the application in your browser (usually `http://localhost:5173`)
-3. Create events using the event form
-4. View all events in the event list
-5. Click on an event to view details
-6. Edit or delete events as needed
+1. Start backend + frontend
+2. Open http://localhost:5173
+3. Create events using the form
+4. View, edit, and delete events from the list
 
 ## License
 
